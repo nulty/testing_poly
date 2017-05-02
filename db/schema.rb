@@ -11,6 +11,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20170502203959) do
+
+  create_table "accounts", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "buyers", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.integer  "purchase_id", limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "cards", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.integer  "payment_id", limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "line_items", force: :cascade do |t|
+    t.string   "description",        limit: 255
+    t.integer  "account_id",         limit: 4
+    t.integer  "statementable_id",   limit: 4
+    t.string   "statementable_type", limit: 255
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "purchases", force: :cascade do |t|
+    t.string   "name",         limit: 255
+    t.integer  "line_item_id", limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
 
 end
